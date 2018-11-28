@@ -92,8 +92,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'map_data',
-        'USER': 'postgres',
-        'PASSWORD': '',
+        'USER': 'admin',
+        'PASSWORD': 'admin123*',
         'HOST': 'localhost',
         'PORT': '5433',
     }
