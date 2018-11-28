@@ -136,6 +136,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+"""
 LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (5.54, -73.36),
     'DEFAULT_ZOOM': 5,
@@ -143,3 +144,4 @@ LEAFLET_CONFIG = {
     'MIN_ZOOM': 10,
     'ATTRIBUTION_PREFIX': 'Geoportal'
 }
+"""
