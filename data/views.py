@@ -8,12 +8,26 @@ from . import serializers
 
 from .models import PointData
 from django.http import HttpResponse
+import pyrebase
 
+config = {
+    "apiKey": "AIzaSyC3e1ROiSyZNBxMPp1YoWiHgBxEm4YfBL8",
+    "authDomain": "uptc-pirgua.firebaseapp.com",
+    "databaseURL": "https://uptc-pirgua.firebaseio.com",
+    "projectId": "uptc-pirgua",
+    "storageBucket": "uptc-pirgua.appspot.com",
+    "messagingSenderId": "299290845683"
+}
+
+firebase = pyrebase.initialize_app(config)
+db = firebase.database()
 
 class HomePageView(TemplateView):
     template_name = 'index.html'
+    pass
 
 
+@api_view(['GET'])
 def get_data(request):
     point = serialize('geojson', PointData.objects.all())
     return HttpResponse(point, content_type='json')
@@ -33,4 +47,14 @@ def add_data(request):
 @api_view(['POST'])
 def receive_data(request):
     print(request.data)
+    analog_in_1 = request.data.get('analog_in_1')
+    analog_in_2 = request.data.get('analog_in_2')
+    analog_in_3 = request.data.get('analog_in_3')
+    analog_in_4 = request.data.get('analog_in_4')
+    data = db.child('station_1').update({
+        "analog_in_1": analog_in_1,
+        "analog_in_2": analog_in_2,
+        "analog_in_3": analog_in_3,
+        "analog_in_4": analog_in_4
+    })
     return Response({'detail': request.data}, status.HTTP_200_OK)
