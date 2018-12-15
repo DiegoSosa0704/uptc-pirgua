@@ -22,6 +22,7 @@ config = {
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 
+
 class HomePageView(TemplateView):
     template_name = 'index.html'
     pass
@@ -46,15 +47,11 @@ def add_data(request):
 
 @api_view(['POST'])
 def receive_data(request):
-    print(request.data)
-    analog_in_1 = request.data.get('analog_in_1')
-    analog_in_2 = request.data.get('analog_in_2')
-    analog_in_3 = request.data.get('analog_in_3')
-    analog_in_4 = request.data.get('analog_in_4')
-    data = db.child('station_1').update({
-        "analog_in_1": analog_in_1,
-        "analog_in_2": analog_in_2,
-        "analog_in_3": analog_in_3,
-        "analog_in_4": analog_in_4
+    station_name = request.data.get('station_name')
+    db.child(station_name).update({
+        "analog_in_1": request.data.get('data').get('analog_in_1'),
+        "analog_in_2": request.data.get('data').get('analog_in_2'),
+        "analog_in_3": request.data.get('data').get('analog_in_3'),
+        "analog_in_4": request.data.get('data').get('analog_in_4')
     })
     return Response({'detail': request.data}, status.HTTP_200_OK)

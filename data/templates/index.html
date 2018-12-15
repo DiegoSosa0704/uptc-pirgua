@@ -10,9 +10,9 @@
     <title>Data</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'semantic/dist/semantic.min.css' %}">
     <script type="text/javascript" src="{% static "leaflet.ajax.min.js" %}"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
     <script type="text/javascript">
         function our_layers(map, options) {
             var datasetsSedes = new L.GeoJSON.AJAX("{% url 'get_data' %}", {
@@ -26,31 +26,162 @@
                 }
             });
             datasetsSedes.addTo(map);
-
-            {% comment %}var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            });
-            var OpenTopoMap = L.tileLayer('http://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-                maxZoom: 17,
-                attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
-            });
-            var baseLayers = {
-                "OSM": osm,
-                "OpenTopoMap": OpenTopoMap
-            };
-            L.control.groupedLayers(baseLayers).addTo(map);{% endcomment %}
         }
-
     </script>
     <style type="text/css">
         #gis {
-            width: 90%;
-            height: 550px
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
 <body>
+
+<div class="ui three column doubling stackable grid container">
+
+    <section class="eight wide column">
+        <h3>Mapa</h3>
+        {% leaflet_map "gis" callback="window.our_layers" %}
+    </section>
+
+    <section class="eight wide column">
+        <div class="ui grid">
+            <div class="equal width row">
+                <div class="column">
+                    <table class="ui celled padded table">
+                        <thead>
+                        <tr>
+                            <th rowspan="2">Primera Estación</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <h5 class="ui center aligned header">PH</h5>
+                            </td>
+                            <td id="station_1_data_1" class="single line">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h5 class="ui center aligned header">Oxigeno Disuelto</h5>
+                            </td>
+                            <td id="station_1_data_2" class="single line">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h5 class="ui center aligned header">Conductividad Electrica</h5>
+                            </td>
+                            <td id="station_1_data_3" class="single line">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h5 class="ui center aligned header">Estado</h5>
+                            </td>
+                            <td id="station_1_data_4" class="single line">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="column">
+                    <table class="ui celled padded table">
+                        <thead>
+                        <tr>
+                            <th rowspan="2">Segunda Estación</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <h5 class="ui center aligned header">PH</h5>
+                            </td>
+                            <td id="station_2_data_1" class="single line">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h5 class="ui center aligned header">Oxigeno Disuelto</h5>
+                            </td>
+                            <td id="station_2_data_2" class="single line">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h5 class="ui center aligned header">Conductividad Electrica</h5>
+                            </td>
+                            <td id="station_2_data_3" class="single line">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h5 class="ui center aligned header">Estado</h5>
+                            </td>
+                            <td id="station_2_data_4" class="single line">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="equal width row">
+                <div class="column">
+                    <table class="ui celled padded table">
+                        <thead>
+                        <tr>
+                            <th rowspan="2">Tercera Estación</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <h5 class="ui center aligned header">PH</h5>
+                            </td>
+                            <td id="station_3_data_1" class="single line">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h5 class="ui center aligned header">Oxigeno Disuelto</h5>
+                            </td>
+                            <td id="station_3_data_2" class="single line">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h5 class="ui center aligned header">Conductividad Electrica</h5>
+                            </td>
+                            <td id="station_3_data_3" class="single line">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h5 class="ui center aligned header">Estado</h5>
+                            </td>
+                            <td id="station_3_data_4" class="single line">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="column"></div>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% comment %}
 
 <section class="first-section">
     <div class="container">
@@ -59,7 +190,7 @@
                 <div class="text-content">
                     <h2>Datos Georeferenciados</h2>
                     <div class="line-dec"></div>
-                    {% comment %}<span>geoportal especializado en la información de instituciones educativas de tunja</span>{% endcomment %}
+                    <span>geoportal especializado en la información de instituciones educativas de tunja</span>
                 </div>
             </div>
         </div>
@@ -105,7 +236,15 @@
     </div>
 </section>
 
+{% endcomment %}
+
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="{% static "semantic/dist/semantic.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/main.js" %}"></script>
 </body>
 </html>
