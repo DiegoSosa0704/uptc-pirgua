@@ -4,9 +4,8 @@ from django.core.serializers import serialize
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from . import serializers
-
-from .models import PointData
+from .serializers import StationDataSerializer
+from .models import StationPoint, StationData
 from django.http import HttpResponse
 import pyrebase
 
@@ -30,14 +29,14 @@ class HomePageView(TemplateView):
 
 @api_view(['GET'])
 def get_data(request):
-    point = serialize('geojson', PointData.objects.all())
+    point = serialize('geojson', StationPoint.objects.all())
     return HttpResponse(point, content_type='json')
 
 
 @api_view(['POST'])
 def add_data(request):
     if request.method == "POST":
-        serializer = serializers.PointDataSerializer(data=request.data)
+        serializer = StationDataSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -54,4 +53,13 @@ def receive_data(request):
         "analog_in_3": request.data.get('data').get('analog_in_3'),
         "analog_in_4": request.data.get('data').get('analog_in_4')
     })
+    station = StationPoint.objects.get(station_name=station_name)
+    StationData.objects.create(
+        station_point = station,
+        ph = request.data.get('data').get('analog_in_1'),
+        dissolved_oxygen = request.data.get('data').get('analog_in_2'),
+        electric_conductivity = request.data.get('data').get('analog_in_3'),
+        state = request.data.get('data').get('analog_in_4')
+    )
+
     return Response({'detail': request.data}, status.HTTP_200_OK)

@@ -1,9 +1,10 @@
 from django.contrib import admin
-from .models import PointData
+from .models import StationPoint, StationData
 from leaflet.admin import LeafletGeoAdmin
 
-class PointDataAdmin(LeafletGeoAdmin):
+
+class StationDataAdmin(LeafletGeoAdmin):
     pass
 
-
-admin.site.register(PointData, PointDataAdmin)
+admin.site.register(StationPoint, StationDataAdmin)
+admin.site.register(StationData)

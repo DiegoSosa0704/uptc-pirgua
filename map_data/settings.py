@@ -25,7 +25,7 @@ SECRET_KEY = 'kfdjb7wv=gx3!7uf9lh5jo5hum+^k&77*8gd-pnr&d7_#_^y%c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['54.159.41.50']
+ALLOWED_HOSTS = ['54.159.41.50', '127.0.0.1']
 
 
 # Application definition
@@ -146,6 +146,4 @@ LEAFLET_CONFIG = {
     'MIN_ZOOM': 10,
     'ATTRIBUTION_PREFIX': 'Geoportal'
 }
-
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
