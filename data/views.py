@@ -64,4 +64,4 @@ def receive_data(request):
         )
         return Response({'detail': request.data}, status.HTTP_200_OK)
     except AttributeError as e:
-        return Response({'detail': request.data}, status.HTTP_204_NO_CONTENT)
+        return Response({'detail': "datos: "  + e.__str__()}, status.HTTP_204_NO_CONTENT)
