@@ -46,20 +46,22 @@ def add_data(request):
 
 @api_view(['POST'])
 def receive_data(request):
-    station_name = request.data.get('station_name')
-    db.child(station_name).update({
-        "analog_in_1": request.data.get('data').get('analog_in_1'),
-        "analog_in_2": request.data.get('data').get('analog_in_2'),
-        "analog_in_3": request.data.get('data').get('analog_in_3'),
-        "analog_in_4": request.data.get('data').get('analog_in_4')
-    })
-    station = StationPoint.objects.get(station_name=station_name)
-    StationData.objects.create(
-        station_point = station,
-        ph = request.data.get('data').get('analog_in_1'),
-        dissolved_oxygen = request.data.get('data').get('analog_in_2'),
-        electric_conductivity = request.data.get('data').get('analog_in_3'),
-        state = request.data.get('data').get('analog_in_4')
-    )
-
-    return Response({'detail': request.data}, status.HTTP_200_OK)
+    try:
+        station_name = request.data.get('station_name')
+        db.child(station_name).update({
+            "analog_in_1": request.data.get('data').get('analog_in_1'),
+            "analog_in_2": request.data.get('data').get('analog_in_2'),
+            "analog_in_3": request.data.get('data').get('analog_in_3'),
+            "analog_in_4": request.data.get('data').get('analog_in_4')
+        })
+        station = StationPoint.objects.get(station_name=station_name)
+        StationData.objects.create(
+            station_point = station,
+            ph = request.data.get('data').get('analog_in_1'),
+            dissolved_oxygen = request.data.get('data').get('analog_in_2'),
+            electric_conductivity = request.data.get('data').get('analog_in_3'),
+            state = request.data.get('data').get('analog_in_4')
+        )
+        return Response({'detail': request.data}, status.HTTP_200_OK)
+    except AttributeError as e:
+        return Response({'detail': e.args}, status.HTTP_204_NO_CONTENT)
