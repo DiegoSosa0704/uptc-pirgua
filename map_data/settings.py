@@ -140,10 +140,14 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 LEAFLET_CONFIG = {
-    'DEFAULT_CENTER': (5.54, -73.36),
-    'DEFAULT_ZOOM': 5,
-    'MAX_ZOOM': 18,
-    'MIN_ZOOM': 10,
-    'ATTRIBUTION_PREFIX': 'Geoportal'
+    'DEFAULT_CENTER': (5.5781125, -73.31715),
+    'DEFAULT_ZOOM': 17,
+    'MAX_ZOOM': 17,
+    'MIN_ZOOM': 15,
+    'ATTRIBUTION_PREFIX': 'Geoportal',
+    'TILES': [
+        ('Satelite', 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {}),
+        ('Topo Map', 'https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=a559dd1cc28f45a6bf900da601caec71', {}),
+        ('Street Map', 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}),
+    ],
 }
-

@@ -17,15 +17,24 @@
         function our_layers(map, options) {
             var datasetsSedes = new L.GeoJSON.AJAX("{% url 'get_data' %}", {
                 onEachFeature: function (feature, layer) {
-                    layer.bindPopup(feature.properties.lat.toString());
-                    layer.on("click", function () {
-                        $('#data1').html(feature.properties.lat.toString());
-                        $('#data2').html(feature.properties.long.toString());
-                        $('#data3').html("data3");
-                    })
+                    switch(feature.properties.station_name.toString()) {
+                        case 'station_1':
+                            layer.bindPopup("Primera Estación");
+                            break;
+                        case 'station_2':
+                            layer.bindPopup("Segunda Estación");
+                            break;
+                        case 'station_3':
+                            layer.bindPopup("Tercera Estación");
+                            break;
+                        default:
+                            // code block
+                        }
                 }
             });
             datasetsSedes.addTo(map);
+
+            L.marker([50.5, 30.5]).addTo(map);
         }
     </script>
     <style type="text/css">
