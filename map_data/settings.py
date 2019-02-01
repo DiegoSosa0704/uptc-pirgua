@@ -140,8 +140,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 LEAFLET_CONFIG = {
-    'DEFAULT_CENTER': (5.5781125, -73.31715),
-    'DEFAULT_ZOOM': 17,
+    'DEFAULT_CENTER': (5.5787125, -73.31715),
+    'DEFAULT_ZOOM': 16,
     'MAX_ZOOM': 17,
     'MIN_ZOOM': 15,
     'ATTRIBUTION_PREFIX': 'Geoportal',
