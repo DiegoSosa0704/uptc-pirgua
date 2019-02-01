@@ -46,6 +46,8 @@ def add_data(request):
 
 @api_view(['POST'])
 def receive_data(request):
+    return Response({'detail': request.data}, status.HTTP_200_OK)
+    """
     try:
         station_name = request.data.get('station_name')
         db.child(station_name).update({
@@ -65,3 +67,4 @@ def receive_data(request):
         return Response({'detail': request.data}, status.HTTP_200_OK)
     except AttributeError as e:
         return Response({'detail': request.data}, status.HTTP_204_NO_CONTENT)
+    """
