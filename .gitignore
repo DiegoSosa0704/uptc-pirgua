@@ -116,3 +116,6 @@ venv.bak/
 # nodejs
 
 node_modules/
+
+# Semantic
+semantic/

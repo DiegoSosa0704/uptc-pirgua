@@ -58,7 +58,7 @@ ROOT_URLCONF = 'map_data.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -136,8 +136,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static/")
+]
 
 LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (5.5787125, -73.31715),
@@ -146,8 +147,8 @@ LEAFLET_CONFIG = {
     'MIN_ZOOM': 15,
     'ATTRIBUTION_PREFIX': 'Geoportal',
     'TILES': [
-        ('Satelite', 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {}),
         ('Topo Map', 'https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=a559dd1cc28f45a6bf900da601caec71', {}),
+        ('Satelite', 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {}),
         ('Street Map', 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}),
     ],
 }
