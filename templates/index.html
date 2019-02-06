@@ -30,15 +30,22 @@
       <script src="js/html5shiv.js"></script>
       <script src="js/respond.min.js"></script>
     <![endif]-->
+
     <script type="text/javascript" src="{% static "leaflet.ajax.min.js" %}"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
     <script type="text/javascript">
         function our_layers(map, options) {
             var datasetsSedes = new L.GeoJSON.AJAX("{% url 'get_data' %}", {
                 onEachFeature: function (feature, layer) {
                     switch(feature.properties.station_name.toString()) {
                         case 'station_1':
-                            layer.bindPopup("Primera Estación");
+                            layer.bindPopup("Estación A");
                             var icon = L.icon({
                                 iconUrl: '{% static "new/images/pin.png" %}',
 
@@ -49,7 +56,7 @@
                             layer.setIcon(icon)
                             break;
                         case 'station_2':
-                            layer.bindPopup("Segunda Estación");
+                            layer.bindPopup("Estación B");
                             var icon = L.icon({
                                 iconUrl: '{% static "new/images/pin-yellow.png" %}',
 
@@ -60,7 +67,7 @@
                             layer.setIcon(icon)
                             break;
                         case 'station_3':
-                            layer.bindPopup("Tercera Estación");
+                            layer.bindPopup("Estación C");
                             var icon = L.icon({
                                 iconUrl: '{% static "new/images/pin-blue.png" %}',
 
@@ -105,7 +112,13 @@
             <nav role="navigation" class="navbar navbar-default">
                 <div class="container">
                 <div class="navbar-header">
-                    <a href="#" class="navbar-brand brand"><i class="fa fa-map-marker"></i><span>Uptc</span><span>Pirgua</span></a>
+                    <button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle" type="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#" class="navbar-brand brand"><i class="fa fa-map-marker"></i><span>UPTC</span><span>Pirgua</span></a>
                 </div>
 
                 <div id="navbar-collapse-02" class="collapse navbar-collapse">
@@ -117,26 +130,27 @@
                 </div>
             </nav>
     
-
             <div class="intro center-content">
-
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12 col-md-offset-1 col-sm-12 col-sm-offset-1 col-xs-12">
+                        <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
                             <div class="email text-center"><i class="fa fa-map-marker"></i></div>
                             <p class="tag-line text-center">Universidad Pedagógica y Tecnológica de Colombia</p>
                             <h1 class="pull-stop text-center">Sistema IoT para supervisar la calidad en caudales superficiales "Las Cebollas"</h1>
-                            <div class="row margin-bottom-0 text-center">
-                                <div class="col-md-12 col-sm-12">
-                                    <a class="btn btn-info button scroll" href="#contact">Ver Datos de Estaciones</a>
+                            <div class="login-reg text-center form-inline">
+                                <div class="row margin-bottom-0">
+                                    <div class="col-md-12 col-sm-12">
+                                        <a class="btn btn-info button scroll text-center" href="#contact">Ver Datos de Estaciones</a>            
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    <div class="row">
 
-                </div><!-- container -->
+                    </div><!-- row -->
 
-            </div><!-- intro -->
+                </div><!-- intro -->
+
+            </div><!-- container -->
 
         </header><!-- header -->
 
@@ -148,7 +162,7 @@
                     <div class="col-sm-4">
                         <table class="ui red celled table unstackable">
                             <thead>
-                                <tr><th class="center aligned" colspan="2">Primera Estación</th><tr>
+                                <tr><th class="center aligned" colspan="2">Estación A</th><tr>
                                 <tr>
                                     <th>Variable</th>
                                     <th>Val</th>
@@ -178,7 +192,7 @@
                     <div class="col-md-4">
                         <table class="ui yellow celled table unstackable">
                             <thead>
-                                <tr><th class="center aligned" colspan="2">Segunda Estación</th><tr>
+                                <tr><th class="center aligned" colspan="2">Estación B</th><tr>
                                 <tr>
                                     <th>Variable</th>
                                     <th>Val</th>
@@ -208,7 +222,7 @@
                     <div class="col-md-4">
                         <table class="ui blue celled table unstackable">
                             <thead>
-                                <tr><th class="center aligned" colspan="2">Tercera Estación</th><tr>
+                                <tr><th class="center aligned" colspan="2">Estación C</th><tr>
                                 <tr>
                                     <th>Variable</th>
                                     <th>Val</th>
@@ -245,6 +259,21 @@
 
         </section>
 
+        <section id="content1-5" class="content1-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <canvas id="chart_ph" height="250"></canvas>
+                    </div>
+                    <div class="col-md-4">
+                        <canvas id="chart_dissolved_oxygen" height="250"></canvas>
+                    </div>
+                    <div class="col-md-4">
+                        <canvas id="chart_electric_conductivity" height="250"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 
     </div><!-- /#page -->
@@ -260,10 +289,9 @@
                 </div>
             </div>
         </footer>
-
-
     <!--=== Load JS here for greater good ====-->
     <script type="text/javascript" src="{% static "js/main.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/graph_data.js" %}"></script>
     <script type="text/javascript" src="{% static "new/js/jquery-1.8.3.min.js" %}"></script>
     <script type="text/javascript" src="{% static "new/js/bootstrap.min.js" %}"></script>
     <script type="text/javascript" src="{% static "new/js/jquery.countdown.min.js" %}"></script>
@@ -271,10 +299,6 @@
     <script type="text/javascript" src="{% static "new/js/jquery.nivo.slider.pack.js" %}"></script>
     <script type="text/javascript" src="{% static "new/js/main.js" %}"></script>
     <script type="text/javascript" src="{% static "semantic/dist/semantic.js" %}"></script>
-    <script
-    src="https://code.jquery.com/jquery-3.1.1.min.js"
-    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-    crossorigin="anonymous"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </body>
 </html>

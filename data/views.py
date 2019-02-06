@@ -4,9 +4,10 @@ from django.core.serializers import serialize
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import StationDataSerializer
+from .serializers import StationPointSerializer, StationDataSerializer
 from .models import StationPoint, StationData
 from django.http import HttpResponse
+from django.db.models import Avg
 import pyrebase
 
 config = {
@@ -65,3 +66,27 @@ def receive_data(request):
         return Response({'detail': request.data}, status.HTTP_200_OK)
     except AttributeError as e:
         return Response({'detail': request.data}, status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET'])
+def get_information_graph(request, datatype):
+    if request.method == 'GET':
+        result = {}
+        for i in range(1, 4):
+            avg_july = StationData.objects.filter(date__year=2018, date__month=7, station_point=i).aggregate(Avg(datatype))
+            avg_august = StationData.objects.filter(date__year=2018, date__month=8, station_point=i).aggregate(Avg(datatype))
+            avg_september = StationData.objects.filter(date__year=2018, date__month=9, station_point=i).aggregate(Avg(datatype))
+            avg_october = StationData.objects.filter(date__year=2018, date__month=10, station_point=i).aggregate(Avg(datatype))
+            avg_january = StationData.objects.filter(date__year=2019, date__month=1, station_point=i).aggregate(Avg(datatype))
+            result.update({
+                "station_" + str(i): [
+                    avg_july.get(datatype + '__avg'), 
+                    avg_august.get(datatype + '__avg'), 
+                    avg_september.get(datatype + '__avg'), 
+                    avg_october.get(datatype + '__avg'), 
+                    avg_january.get(datatype + '__avg')
+                ]
+            })
+        # serializer = StationDataSerializer(data, many=True)
+        # return Response(serializer.data) 
+        return Response(result, status.HTTP_200_OK)
