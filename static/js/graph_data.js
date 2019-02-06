@@ -1,5 +1,5 @@
 $.ajax({
-    url: 'http://127.0.0.1:8000/get_information_graph/ph/',
+    url: 'http://54.159.41.50/get_information_graph/ph/',
     type: 'GET',
     error: function() {
         console.log("Error al obtener datos");
@@ -42,7 +42,7 @@ $.ajax({
 });
 
 $.ajax({
-    url: 'http://127.0.0.1:8000/get_information_graph/dissolved_oxygen/',
+    url: 'http://54.159.41.50/get_information_graph/dissolved_oxygen/',
     type: 'GET',
     error: function() {
         console.log("Error al obtener datos");
@@ -85,7 +85,7 @@ $.ajax({
 });
 
 $.ajax({
-    url: 'http://127.0.0.1:8000/get_information_graph/electric_conductivity/',
+    url: 'http://54.159.41.50/get_information_graph/electric_conductivity/',
     type: 'GET',
     error: function() {
         console.log("Error al obtener datos");
