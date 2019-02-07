@@ -1,3 +1,5 @@
+months = ["Julio/2018","Agosto/2018","Septiembre/2018","Octubre/2018","Enero/2019"]
+
 $.ajax({
     url: 'http://54.159.41.50/get_information_graph/ph/',
     type: 'GET',
@@ -12,21 +14,21 @@ $.ajax({
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ["Julio","Agosto","Septiembre","Octubre","Enero"],
+                labels: months,
                 datasets: [{ 
                     data: data_station_1,
                     label: "Estación A",
-                    borderColor: "#3e95cd",
+                    borderColor: "#B03060",
                     fill: false
                 }, { 
                     data: data_station_2,
                     label: "Estación B",
-                    borderColor: "#8e5ea2",
+                    borderColor: "#FFD700",
                     fill: false
                 }, { 
                     data: data_station_3,
                     label: "Estación C",
-                    borderColor: "#3cba9f",
+                    borderColor: "#0E6EB8",
                     fill: false
                 }
                 ]
@@ -38,6 +40,7 @@ $.ajax({
                 }
             }
         });
+        addDataStation("table-ph", data_station_1, data_station_2, data_station_3)
     }
 });
 
@@ -55,21 +58,21 @@ $.ajax({
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ["Julio","Agosto","Septiembre","Octubre","Enero"],
+                labels: months,
                 datasets: [{ 
                     data: data_station_1,
                     label: "Estación A",
-                    borderColor: "#3e95cd",
+                    borderColor: "#B03060",
                     fill: false
                 }, { 
                     data: data_station_2,
                     label: "Estación B",
-                    borderColor: "#8e5ea2",
+                    borderColor: "#FFD700",
                     fill: false
                 }, { 
                     data: data_station_3,
                     label: "Estación C",
-                    borderColor: "#3cba9f",
+                    borderColor: "#0E6EB8",
                     fill: false
                 }
                 ]
@@ -81,6 +84,7 @@ $.ajax({
                 }
             }
         });
+        addDataStation("table-dissolved_oxygen", data_station_1, data_station_2, data_station_3)
     }
 });
 
@@ -98,21 +102,21 @@ $.ajax({
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ["Julio","Agosto","Septiembre","Octubre","Enero"],
+                labels: months,
                 datasets: [{ 
                     data: data_station_1,
                     label: "Estación A",
-                    borderColor: "#3e95cd",
+                    borderColor: "#B03060",
                     fill: false
                 }, { 
                     data: data_station_2,
                     label: "Estación B",
-                    borderColor: "#8e5ea2",
+                    borderColor: "#FFD700",
                     fill: false
                 }, { 
                     data: data_station_3,
                     label: "Estación C",
-                    borderColor: "#3cba9f",
+                    borderColor: "#0E6EB8",
                     fill: false
                 }
                 ]
@@ -120,9 +124,16 @@ $.ajax({
             options: {
                 title: {
                 display: true,
-                text: 'Conductividad Electrica'
+                text: 'Conductividad Eléctrica'
                 }
             }
         });
+        addDataStation("table-electric_conductivity", data_station_1, data_station_2, data_station_3)
     }
 });
+
+function addDataStation(id_table, data_station_1, data_station_2, data_station_3) {
+    for (i in months){
+        $("#" + id_table + " tbody").append("<tr><td>" + months[i] + "</td><td>" + data_station_1[i] + "</td><td>" + data_station_2[i] + "</td><td>" + data_station_3[i] + "</td></tr>");           
+    }
+}

@@ -19,8 +19,9 @@
     <link href="{% static "new/css/default.css" %}" rel="stylesheet">
     <link href="{% static "new/css/main.css" %}" rel="stylesheet">
 
-    <!-- Font Awesome -->
-    <link href="{% static "new/css/font-awesome.css" %}" rel="stylesheet">
+    <!-- Font Awesome
+    <link href="{% static "new/css/font-awesome.css" %}" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,900,700,600,300,200" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700" rel="stylesheet">
     <link rel="shortcut icon" href="{% static "new/images/favicon.ico" %}">
@@ -45,7 +46,16 @@
                 onEachFeature: function (feature, layer) {
                     switch(feature.properties.station_name.toString()) {
                         case 'station_1':
-                            layer.bindPopup("Estación A");
+                            layer.bindPopup("<table class='ui celled structured table'> <thead> <tr>\
+                            <th class='center aligned' colspan='3'>Estación A</th></tr> <tr><th>Dispositivos y \
+                            Recursos Físicos</th> <th colspan='2'>Referencia y Especificaciones</th> </tr></thead> \
+                            <tbody> <tr> <td>Instrumento primario de medición</td> <td colspan='2'>Sondas: pH, Oxigeno \
+                            disuelto y conductividad (Atlas Scientific)</td> </tr> <tr> <td>Acondicionamiento de señal</td> \
+                            <td colspan='2'>Circuitos EZO: pH, Oxigeno disuelto y conductividad (Atlas Scientific)</td> \
+                            </tr> <tr> <td rowspan='3'>Microcontrolador, tarjeta de expansión y módulo para operación de \
+                            bajo sonsumo de energía</td> </tr> <tr> <td>Expanción Board 2.0 (Pycom)</td> \
+                            <td>Expanción Board 2.0 (Pycom)</td> </tr> <tr> <td colspan='2'>Lopy (Pycom)</td> </tr> \
+                            </tbody> </table>");
                             var icon = L.icon({
                                 iconUrl: '{% static "new/images/pin.png" %}',
 
@@ -56,7 +66,16 @@
                             layer.setIcon(icon)
                             break;
                         case 'station_2':
-                            layer.bindPopup("Estación B");
+                            layer.bindPopup("<table class='ui celled structured table'> <thead> <tr>\
+                            <th class='center aligned' colspan='3'>Estación B</th></tr> <tr><th>Dispositivos y \
+                            Recursos Físicos</th> <th colspan='2'>Referencia y Especificaciones</th> </tr></thead> \
+                            <tbody> <tr> <td>Instrumento primario de medición</td> <td colspan='2'>Sondas: pH, Oxigeno \
+                            disuelto y conductividad (Atlas Scientific)</td> </tr> <tr> <td>Acondicionamiento de señal</td> \
+                            <td colspan='2'>Circuitos EZO: pH, Oxigeno disuelto y conductividad (Atlas Scientific)</td> \
+                            </tr> <tr> <td rowspan='3'>Microcontrolador, tarjeta de expansión y módulo para operación de \
+                            bajo sonsumo de energía</td> </tr> <tr> <td>Expanción Board 2.0 (Pycom)</td> \
+                            <td>Expanción Board 2.0 (Pycom)</td> </tr> <tr> <td colspan='2'>Lopy (Pycom)</td> </tr> \
+                            </tbody> </table>");
                             var icon = L.icon({
                                 iconUrl: '{% static "new/images/pin-yellow.png" %}',
 
@@ -67,7 +86,16 @@
                             layer.setIcon(icon)
                             break;
                         case 'station_3':
-                            layer.bindPopup("Estación C");
+                            layer.bindPopup("<table class='ui celled structured table'> <thead> <tr>\
+                            <th class='center aligned' colspan='3'>Estación C</th></tr> <tr><th>Dispositivos y \
+                            Recursos Físicos</th> <th colspan='2'>Referencia y Especificaciones</th> </tr></thead> \
+                            <tbody> <tr> <td>Instrumento primario de medición</td> <td colspan='2'>Sondas: pH, Oxigeno \
+                            disuelto y conductividad (Atlas Scientific)</td> </tr> <tr> <td>Acondicionamiento de señal</td> \
+                            <td colspan='2'>Circuitos EZO: pH, Oxigeno disuelto y conductividad (Atlas Scientific)</td> \
+                            </tr> <tr> <td rowspan='3'>Microcontrolador, tarjeta de expansión y módulo para operación de \
+                            bajo sonsumo de energía</td> </tr> <tr> <td>Expanción Board 2.0 (Pycom)</td> \
+                            <td>Expanción Board 2.0 (Pycom)</td> </tr> <tr> <td colspan='2'>Lopy (Pycom)</td> </tr> \
+                            </tbody> </table>");
                             var icon = L.icon({
                                 iconUrl: '{% static "new/images/pin-blue.png" %}',
 
@@ -98,7 +126,7 @@
     <style type="text/css">
         #gis {
             width: 100%;
-            height: 350px;
+            height: 500px;
         }
     </style>
 </head>
@@ -178,7 +206,7 @@
                                     <td id="station_1_data_2">...</td>
                                 </tr>
                                 <tr>
-                                    <td>Conductividad Electrica</td>
+                                    <td>Conductividad Eléctrica</td>
                                     <td id="station_1_data_3">...</td>
                                 </tr>
                                 <tr>
@@ -208,7 +236,7 @@
                                     <td id="station_2_data_2">...</td>
                                 </tr>
                                 <tr>
-                                    <td>Conductividad Electrica</td>
+                                    <td>Conductividad Eléctrica</td>
                                     <td id="station_2_data_3">...</td>
                                 </tr>
                                 <tr>
@@ -238,7 +266,7 @@
                                     <td id="station_3_data_2">...</td>
                                 </tr>
                                 <tr>
-                                    <td>Conductividad Electrica</td>
+                                    <td>Conductividad Eléctrica</td>
                                     <td id="station_3_data_3">...</td>
                                 </tr>
                                 <tr>
@@ -260,16 +288,64 @@
         </section>
 
         <section id="content1-5" class="content1-5">
-            <div class="container">
+        
+            <div class="container centered">
+                <h2 class="text-center">Historial</h2>
                 <div class="row">
-                    <div class="col-md-4">
-                        <canvas id="chart_ph" height="250"></canvas>
+                    <div class="col-md-6">
+                        <table id="table-ph" class="ui fixed single line celled table unstackable">
+                            <thead>
+                                <tr><th class="center aligned" colspan="4">PH Promedio</th><tr>
+                                <tr>
+                                <th>Fecha</th>
+                                <th>Estación A</th>
+                                <th>Estación B</th>
+                                <th>Estación C</th>
+                            </tr></thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="col-md-4">
-                        <canvas id="chart_dissolved_oxygen" height="250"></canvas>
+                    <div class="col-md-6">
+                       <canvas id="chart_ph" height="170"></canvas>
                     </div>
-                    <div class="col-md-4">
-                        <canvas id="chart_electric_conductivity" height="250"></canvas>
+                </div>
+                <div class="row" style="margin-top:50px;">
+                    <div class="col-md-6">
+                        <table id="table-dissolved_oxygen" class="ui fixed single line celled table unstackable">
+                            <thead>
+                                <tr><th class="center aligned" colspan="4">Oxigeno Disuelto Promedio</th><tr>
+                                <tr>
+                                <th>Fecha</th>
+                                <th>Estación A</th>
+                                <th>Estación B</th>
+                                <th>Estación C</th>
+                            </tr></thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                       <canvas id="chart_dissolved_oxygen" height="170"></canvas>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:50px;">
+                    <div class="col-md-6">
+                        <table id="table-electric_conductivity" class="ui fixed single line celled table unstackable">
+                            <thead>
+                                <tr><th class="center aligned" colspan="4">Conductividad Eléctrica Promedio</th><tr>
+                                <tr>
+                                <th>Fecha</th>
+                                <th>Estación A</th>
+                                <th>Estación B</th>
+                                <th>Estación C</th>
+                            </tr></thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                       <canvas id="chart_electric_conductivity" height="170"></canvas>
                     </div>
                 </div>
             </div>
@@ -283,9 +359,19 @@
         ================================== -->
         <footer class="footer8">
             <div class="container">
-                <div class="col-md-12">
-                    <p class="pull-left small">© Copyright - 2018</p>
-                    <p class="pull-right small">UPTC</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <img class="ui medium centered image" src="{% static "new/images/gibasa.jpg" %}">
+                    </div>
+                    <div class="col-md-6">
+                        <img class="ui medium centered image" src="{% static "new/images/telematics.png" %}">
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 20px;" >
+                    <div class="col-md-12">
+                        <p class="pull-left small">© Copyright - 2018</p>
+                        <p class="pull-right small">UPTC</p>
+                    </div>
                 </div>
             </div>
         </footer>
