@@ -6,5 +6,6 @@ from leaflet.admin import LeafletGeoAdmin
 class StationDataAdmin(LeafletGeoAdmin):
     pass
 
+
 admin.site.register(StationPoint, StationDataAdmin)
 admin.site.register(StationData)

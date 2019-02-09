@@ -13,7 +13,7 @@
     <link href="{% static "new/css/bootstrap.css" %}" rel="stylesheet">
 
     <link href="{% static "semantic/dist/semantic.css" %}" rel="stylesheet">
-    
+
 
     <!-- Edit CSS -->
     <link href="{% static "new/css/default.css" %}" rel="stylesheet">
@@ -21,8 +21,10 @@
 
     <!-- Font Awesome
     <link href="{% static "new/css/font-awesome.css" %}" rel="stylesheet">-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,900,700,600,300,200" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,900,700,600,300,200" rel="stylesheet"
+          type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700" rel="stylesheet">
     <link rel="shortcut icon" href="{% static "new/images/favicon.ico" %}">
 
@@ -37,14 +39,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
     <script
-    src="https://code.jquery.com/jquery-3.1.1.min.js"
-    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-    crossorigin="anonymous"></script>
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
     <script type="text/javascript">
         function our_layers(map, options) {
             var datasetsSedes = new L.GeoJSON.AJAX("{% url 'get_data' %}", {
                 onEachFeature: function (feature, layer) {
-                    switch(feature.properties.station_name.toString()) {
+                    switch (feature.properties.station_name.toString()) {
                         case 'station_1':
                             layer.bindPopup("<table class='ui celled structured table'> <thead> <tr>\
                             <th class='center aligned' colspan='3'>Estación A</th></tr> <tr><th>Dispositivos y \
@@ -59,9 +61,9 @@
                             var icon = L.icon({
                                 iconUrl: '{% static "new/images/pin.png" %}',
 
-                                iconSize:     [50, 50], // size of the icon
-                                iconAnchor:   [25, 49], // point of the icon which will correspond to marker's location
-                                popupAnchor:  [0, -60] // point from which the popup should open relative to the iconAnchor
+                                iconSize: [50, 50], // size of the icon
+                                iconAnchor: [25, 49], // point of the icon which will correspond to marker's location
+                                popupAnchor: [0, -60] // point from which the popup should open relative to the iconAnchor
                             });
                             layer.setIcon(icon)
                             break;
@@ -79,9 +81,9 @@
                             var icon = L.icon({
                                 iconUrl: '{% static "new/images/pin-yellow.png" %}',
 
-                                iconSize:     [50, 50], // size of the icon
-                                iconAnchor:   [25, 49], // point of the icon which will correspond to marker's location
-                                popupAnchor:  [0, -60] // point from which the popup should open relative to the iconAnchor
+                                iconSize: [50, 50], // size of the icon
+                                iconAnchor: [25, 49], // point of the icon which will correspond to marker's location
+                                popupAnchor: [0, -60] // point from which the popup should open relative to the iconAnchor
                             });
                             layer.setIcon(icon)
                             break;
@@ -99,26 +101,26 @@
                             var icon = L.icon({
                                 iconUrl: '{% static "new/images/pin-blue.png" %}',
 
-                                iconSize:     [50, 50], // size of the icon
-                                iconAnchor:   [25, 49], // point of the icon which will correspond to marker's location
-                                popupAnchor:  [0, -60] // point from which the popup should open relative to the iconAnchor
+                                iconSize: [50, 50], // size of the icon
+                                iconAnchor: [25, 49], // point of the icon which will correspond to marker's location
+                                popupAnchor: [0, -60] // point from which the popup should open relative to the iconAnchor
                             });
                             layer.setIcon(icon)
                             break;
                         default:
-                            // code block
-                        }
+                        // code block
+                    }
                 }
             });
             var greenIcon = L.icon({
-            iconUrl: '{% static "new/images/leaf-green.png" %}',
-            shadowUrl: 'leaf-shadow.png',
+                iconUrl: '{% static "new/images/leaf-green.png" %}',
+                shadowUrl: 'leaf-shadow.png',
 
-            iconSize:     [38, 95], // size of the icon
-            shadowSize:   [50, 64], // size of the shadow
-            iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-            shadowAnchor: [4, 62],  // the same for the shadow
-            popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+                iconSize: [38, 95], // size of the icon
+                shadowSize: [50, 64], // size of the shadow
+                iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+                shadowAnchor: [4, 62],  // the same for the shadow
+                popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
             });
             datasetsSedes.addTo(map);
         }
@@ -132,21 +134,24 @@
 </head>
 <body>
 
-    <div id="page" class="page">
+<div id="page" class="page">
 
-        <!-- header -->
-        <header class="header8" id="home" style="background: url('{% static "new/images/altiplano_cundiboyacence.jpg" %}') no-repeat scroll center 69px / cover ;">
+    <!-- header -->
+    <header class="header8" id="home"
+            style="background: url('{% static "new/images/altiplano_cundiboyacence.jpg" %}') no-repeat scroll center 69px / cover ;">
 
-            <nav role="navigation" class="navbar navbar-default">
-                <div class="container">
+        <nav role="navigation" class="navbar navbar-default">
+            <div class="container">
                 <div class="navbar-header">
-                    <button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle" type="button">
+                    <button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle"
+                            type="button">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="#" class="navbar-brand brand"><i class="fa fa-map-marker"></i><span>UPTC</span><span>Pirgua</span></a>
+                    <a href="#" class="navbar-brand brand"><i
+                            class="fa fa-map-marker"></i><span>UPTC</span><span>Pirgua</span></a>
                 </div>
 
                 <div id="navbar-collapse-02" class="collapse navbar-collapse">
@@ -156,236 +161,253 @@
                         <li><a class="scroll" href="#content1-5">Historial</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
-                </div>
-            </nav>
-    
-            <div class="intro center-content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
-                            <div class="email text-center"><i class="fa fa-map-marker"></i></div>
-                            <p class="tag-line text-center">Universidad Pedagógica y Tecnológica de Colombia</p>
-                            <h1 class="pull-stop text-center">Sistema IoT para supervisar la calidad en caudales superficiales "Las Cebollas"</h1>
-                            <div class="login-reg text-center form-inline">
-                                <div class="row margin-bottom-0">
-                                    <div class="col-md-12 col-sm-12">
-                                        <a class="btn btn-info button scroll text-center" href="#contact">Ver Datos de Estaciones</a>            
-                                    </div>
+            </div>
+        </nav>
+
+        <div class="intro center-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+                        <div class="email text-center"><i class="fa fa-map-marker"></i></div>
+                        <p class="tag-line text-center">Universidad Pedagógica y Tecnológica de Colombia</p>
+                        <h1 class="pull-stop text-center">Sistema IoT para supervisar la calidad en caudales
+                            superficiales "Las Cebollas"</h1>
+                        <div class="login-reg text-center form-inline">
+                            <div class="row margin-bottom-0">
+                                <div class="col-md-12 col-sm-12">
+                                    <a class="btn btn-info button scroll text-center" href="#contact">Ver Datos de
+                                        Estaciones</a>
                                 </div>
                             </div>
                         </div>
-
-                    </div><!-- row -->
-
-                </div><!-- intro -->
-
-            </div><!-- container -->
-
-        </header><!-- header -->
-
-        <section id="contact" class="contact2"><!-- background pattern -->
-
-            <div class="container">
-                <h2 class="text-center">Datos de Estación</h2>
-                <div class="row">
-                    <div class="col-md-4">
-                        <table class="ui red celled table unstackable">
-                            <thead>
-                                <tr><th class="center aligned" colspan="2">Estación A</th><tr>
-                                <tr>
-                                    <th>Variable</th>
-                                    <th>Val</th>
-                                <tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>PH</td>
-                                    <td id="station_1_data_1">..</td>
-                                </tr>
-                                <tr>
-                                    <td>Oxigeno Disuelto</td>
-                                    <td id="station_1_data_2">...</td>
-                                </tr>
-                                <tr>
-                                    <td>Conductividad Eléctrica</td>
-                                    <td id="station_1_data_3">...</td>
-                                </tr>
-                                <tr>
-                                    <td>Estado de bateria</td>
-                                    <td id="station_1_data_4">...</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <table class="ui yellow celled table unstackable">
-                            <thead>
-                                <tr><th class="center aligned" colspan="2">Estación B</th><tr>
-                                <tr>
-                                    <th>Variable</th>
-                                    <th>Val</th>
-                                <tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>PH</td>
-                                    <td id="station_2_data_1">..</td>
-                                </tr>
-                                <tr>
-                                    <td>Oxigeno Disuelto</td>
-                                    <td id="station_2_data_2">...</td>
-                                </tr>
-                                <tr>
-                                    <td>Conductividad Eléctrica</td>
-                                    <td id="station_2_data_3">...</td>
-                                </tr>
-                                <tr>
-                                    <td>Estado de bateria</td>
-                                    <td id="station_2_data_4">...</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
 
-                    <div class="col-md-4">
-                        <table class="ui blue celled table unstackable">
-                            <thead>
-                                <tr><th class="center aligned" colspan="2">Estación C</th><tr>
-                                <tr>
-                                    <th>Variable</th>
-                                    <th>Val</th>
-                                <tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>PH</td>
-                                    <td id="station_3_data_1">..</td>
-                                </tr>
-                                <tr>
-                                    <td>Oxigeno Disuelto</td>
-                                    <td id="station_3_data_2">...</td>
-                                </tr>
-                                <tr>
-                                    <td>Conductividad Eléctrica</td>
-                                    <td id="station_3_data_3">...</td>
-                                </tr>
-                                <tr>
-                                    <td>Estado de bateria</td>
-                                    <td id="station_3_data_4">...</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="row" style="margin-top: 20px;">
-                    <div class="col-md-12">
-                        {% leaflet_map "gis" callback="window.our_layers" %}
-                    </div>
+                </div><!-- row -->
+
+            </div><!-- intro -->
+
+        </div><!-- container -->
+
+    </header><!-- header -->
+
+    <section id="contact" class="contact2"><!-- background pattern -->
+
+        <div class="container">
+            <h2 class="text-center">Datos de Estación</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <table class="ui red celled table unstackable">
+                        <thead>
+                        <tr>
+                            <th class="center aligned" colspan="2">Estación A</th>
+                        <tr>
+                        <tr>
+                            <th>Variable</th>
+                            <th>Val</th>
+                        <tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>PH</td>
+                            <td id="station_1_data_1">..</td>
+                        </tr>
+                        <tr>
+                            <td>Oxigeno Disuelto</td>
+                            <td id="station_1_data_2">...</td>
+                        </tr>
+                        <tr>
+                            <td>Conductividad Eléctrica</td>
+                            <td id="station_1_data_3">...</td>
+                        </tr>
+                        <tr>
+                            <td>Estado de bateria</td>
+                            <td id="station_1_data_4">...</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
 
-            </div>
-
-        </section>
-
-        <section id="content1-5" class="content1-5">
-        
-            <div class="container centered">
-                <h2 class="text-center">Historial</h2>
-                <div class="row">
-                    <div class="col-md-6">
-                        <table id="table-ph" class="ui fixed single line celled table unstackable">
-                            <thead>
-                                <tr><th class="center aligned" colspan="4">PH Promedio</th><tr>
-                                <tr>
-                                <th>Fecha</th>
-                                <th>Estación A</th>
-                                <th>Estación B</th>
-                                <th>Estación C</th>
-                            </tr></thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-md-6">
-                       <canvas id="chart_ph" height="170"></canvas>
-                    </div>
+                <div class="col-md-4">
+                    <table class="ui yellow celled table unstackable">
+                        <thead>
+                        <tr>
+                            <th class="center aligned" colspan="2">Estación B</th>
+                        <tr>
+                        <tr>
+                            <th>Variable</th>
+                            <th>Val</th>
+                        <tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>PH</td>
+                            <td id="station_2_data_1">..</td>
+                        </tr>
+                        <tr>
+                            <td>Oxigeno Disuelto</td>
+                            <td id="station_2_data_2">...</td>
+                        </tr>
+                        <tr>
+                            <td>Conductividad Eléctrica</td>
+                            <td id="station_2_data_3">...</td>
+                        </tr>
+                        <tr>
+                            <td>Estado de bateria</td>
+                            <td id="station_2_data_4">...</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="row" style="margin-top:50px;">
-                    <div class="col-md-6">
-                        <table id="table-dissolved_oxygen" class="ui fixed single line celled table unstackable">
-                            <thead>
-                                <tr><th class="center aligned" colspan="4">Oxigeno Disuelto Promedio</th><tr>
-                                <tr>
-                                <th>Fecha</th>
-                                <th>Estación A</th>
-                                <th>Estación B</th>
-                                <th>Estación C</th>
-                            </tr></thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-md-6">
-                       <canvas id="chart_dissolved_oxygen" height="170"></canvas>
-                    </div>
-                </div>
-                <div class="row" style="margin-top:50px;">
-                    <div class="col-md-6">
-                        <table id="table-electric_conductivity" class="ui fixed single line celled table unstackable">
-                            <thead>
-                                <tr><th class="center aligned" colspan="4">Conductividad Eléctrica Promedio</th><tr>
-                                <tr>
-                                <th>Fecha</th>
-                                <th>Estación A</th>
-                                <th>Estación B</th>
-                                <th>Estación C</th>
-                            </tr></thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-md-6">
-                       <canvas id="chart_electric_conductivity" height="170"></canvas>
-                    </div>
+
+                <div class="col-md-4">
+                    <table class="ui blue celled table unstackable">
+                        <thead>
+                        <tr>
+                            <th class="center aligned" colspan="2">Estación C</th>
+                        <tr>
+                        <tr>
+                            <th>Variable</th>
+                            <th>Val</th>
+                        <tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>PH</td>
+                            <td id="station_3_data_1">..</td>
+                        </tr>
+                        <tr>
+                            <td>Oxigeno Disuelto</td>
+                            <td id="station_3_data_2">...</td>
+                        </tr>
+                        <tr>
+                            <td>Conductividad Eléctrica</td>
+                            <td id="station_3_data_3">...</td>
+                        </tr>
+                        <tr>
+                            <td>Estado de bateria</td>
+                            <td id="station_3_data_4">...</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </section>
-
-
-    </div><!-- /#page -->
-
-            <!-- =================================
-        Portfolio-Section
-        ================================== -->
-        <footer class="footer8">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <img class="ui medium centered image" src="{% static "new/images/gibasa.jpg" %}">
-                    </div>
-                    <div class="col-md-6">
-                        <img class="ui medium centered image" src="{% static "new/images/telematics.png" %}">
-                    </div>
-                </div>
-                <div class="row" style="margin-top: 20px;" >
-                    <div class="col-md-12">
-                        <p class="pull-left small">© Copyright - 2018</p>
-                        <p class="pull-right small">UPTC</p>
-                    </div>
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-md-12">
+                    {% leaflet_map "gis" callback="window.our_layers" %}
                 </div>
             </div>
-        </footer>
-    <!--=== Load JS here for greater good ====-->
-    <script type="text/javascript" src="{% static "js/main.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/graph_data.js" %}"></script>
-    <script type="text/javascript" src="{% static "new/js/jquery-1.8.3.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "new/js/bootstrap.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "new/js/jquery.countdown.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "new/js/jquery.flexslider.js" %}"></script>
-    <script type="text/javascript" src="{% static "new/js/jquery.nivo.slider.pack.js" %}"></script>
-    <script type="text/javascript" src="{% static "new/js/main.js" %}"></script>
-    <script type="text/javascript" src="{% static "semantic/dist/semantic.js" %}"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+        </div>
+
+    </section>
+
+    <section id="content1-5" class="content1-5">
+
+        <div class="container centered">
+            <h2 class="text-center">Historial</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <table id="table-ph" class="ui fixed single line celled table unstackable">
+                        <thead>
+                        <tr>
+                            <th class="center aligned" colspan="4">PH Promedio</th>
+                        <tr>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Estación A</th>
+                            <th>Estación B</th>
+                            <th>Estación C</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <canvas id="chart_ph" height="170"></canvas>
+                </div>
+            </div>
+            <div class="row" style="margin-top:50px;">
+                <div class="col-md-6">
+                    <table id="table-dissolved_oxygen" class="ui fixed single line celled table unstackable">
+                        <thead>
+                        <tr>
+                            <th class="center aligned" colspan="4">Oxigeno Disuelto Promedio</th>
+                        <tr>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Estación A</th>
+                            <th>Estación B</th>
+                            <th>Estación C</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <canvas id="chart_dissolved_oxygen" height="170"></canvas>
+                </div>
+            </div>
+            <div class="row" style="margin-top:50px;">
+                <div class="col-md-6">
+                    <table id="table-electric_conductivity" class="ui fixed single line celled table unstackable">
+                        <thead>
+                        <tr>
+                            <th class="center aligned" colspan="4">Conductividad Eléctrica Promedio</th>
+                        <tr>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Estación A</th>
+                            <th>Estación B</th>
+                            <th>Estación C</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <canvas id="chart_electric_conductivity" height="170"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</div><!-- /#page -->
+
+<!-- =================================
+Portfolio-Section
+================================== -->
+<footer class="footer8">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img class="ui medium centered image" src="{% static "new/images/gibasa.jpg" %}">
+            </div>
+            <div class="col-md-6">
+                <img class="ui medium centered image" src="{% static "new/images/telematics.png" %}">
+            </div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-12">
+                <p class="pull-left small">© Copyright - 2018</p>
+                <p class="pull-right small">UPTC</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--=== Load JS here for greater good ====-->
+<script type="text/javascript" src="{% static "js/main.js" %}"></script>
+<script type="text/javascript" src="{% static "js/graph_data.js" %}"></script>
+<script type="text/javascript" src="{% static "new/js/jquery-1.8.3.min.js" %}"></script>
+<script type="text/javascript" src="{% static "new/js/bootstrap.min.js" %}"></script>
+<script type="text/javascript" src="{% static "new/js/jquery.countdown.min.js" %}"></script>
+<script type="text/javascript" src="{% static "new/js/jquery.flexslider.js" %}"></script>
+<script type="text/javascript" src="{% static "new/js/jquery.nivo.slider.pack.js" %}"></script>
+<script type="text/javascript" src="{% static "new/js/main.js" %}"></script>
+<script type="text/javascript" src="{% static "semantic/dist/semantic.js" %}"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </body>
 </html>

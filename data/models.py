@@ -2,6 +2,7 @@ from django.contrib.gis.geos import Point
 from django.contrib.gis.db import models
 from django.utils import timezone
 
+
 class StationPoint(models.Model):
     station_name = models.CharField(max_length=20)
     geo = models.PointField(srid=3116, blank=True)
